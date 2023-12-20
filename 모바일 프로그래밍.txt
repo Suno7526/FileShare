@@ -1,0 +1,253 @@
+*****XML = 정보 저장 + 구조 기술 명세서,
+  사용자 정의 ML을 정의하는 규칙의 집합
+
+markup : 문서 구조를 정의하거나 표현하기 위해 정의한 (부가정보)
+
+HTML 단점 - 태그 제한적, (모호성 문제)
+
+XML은 메타언어
+메타언어 : 마크업 언어를 개발하기 위한 언어
+
+HTML : 사용자정의 불가능, 효과적 검색 어려움, ****편리성,쉬운 사용
+XML : 사용자정의 가능, 정확한 검색 가능 , **문서를 교환하기 위해 개발됨
+
+MS응용 프로그램 = XAML
+
+XML
+1.계층구조(트리구조)
+2.최상위 요소(root)가 하나만 존재 가능
+
+namespace : 중복이 발생하여 구분하기 위해 사용
+
+정형식문서 : XML 문법과 규칙에 맞게 만들어진 오류 없는 문서
+
+***유효한 문서 : 특정 DTD 규칙대로 작성된 문서를 해당 DTD에 대해 유효한 문서
+규칙을 정하는것 : XSD(XML스키마),DTD
+
+DTD,XSD : 문서의 형태(구조)를 정의
+	가독성 UP, 이식성 UP, 효율성 UP
+
+#PCDATA : 텍스트
+, : 순서대로
+* : 0번이상
++ : 1번이상
+? : 0또는1번 사용 가능
+#ELEMENTAL : 요소선언
+#REQUIRED : 반드시 있어야함
+#ATTLIST : 속성 선언
+
+XML 스키마(XSD) : 문서 구조를 정의 , DTD의 문제점을 보완하기 위해 개발
+DTD의 단점
+재사용성과 확장성이 떨어짐
+좀더 정확하게 표현이 어려움
+
+XML 스키마 장점
+높은 확장성,재사용성
+사용자 정의 데이터타입 지원
+
+*****DTD와 XML스키마 비교
+DTD			XML스키마
+단순한 텍스트 데이터	***사용자 지정 데이터 형식 지원
+0회,1회,반복 지원		***최소,최대, 다양하게 지원가능
+
+, = <sequence> / 순차적
+| = <choice> / 선택적
+
+XPath : 위치를 찾을 때 사용하는 언어
+student[name] : 자식으로 name을 가진 student 요소
+student[@sno] : 속성이 sno인 student 요소
+
+XLink : 자원들 사이에 링크를 표현 **(양방향 가능)
+
+XPoint : XPath를 기반으로 문서 일부분에 주소 부여 가능
+
+XSL : 문서 변환 가능 ex)xml로 html 만들기 가능
+
+DOM(Tree기반 API) : HTML,XML 문서를 조작하기 위한 API
+
+SAX(이벤트 기반API) : DOM의 단점을 극복하는 대안
+
+DOM과SAX 차이점
+DOM			SAX
+트리기반			이벤트기반
+모두 접근		순차적 접근
+데이터 크기에		데이터 크기와 상관없이
+비해서 메모리 증가	일정 메모리 사용
+경량데이터		경량/대용량데이터
+데이터재사용O		재사용X
+
+Intent : 의도,목적을 가지고 작업 요청하여 수행
+StartActivity : 액티비티 실행(화면 전환)
+manifest에 액티비티 추가해야함
+
+뷰(위젯) : 화면을 구성하는 요소
+
+layout_width="match_parent" 부모만큼
+	     "wrap_content" 텍스트,이미지 만큼
+
+layout_margin 마진
+
+visibility
+visible : 보임
+invisible : 안보임 자리차지o
+gone : 안보임 자리차지 x
+enabled : 동작여부
+clickable : 클릭 여부
+rotation : 회전
+
+TextView 속성
+typeface : 글꼴
+textStyle : 스타일
+singleLine : 한줄이 넘어갈 경우 한줄만 출력하고 뒤에 ...
+EditText : 값을 받기위해 만든 변수
+
+레이아웃 속성
+orientation : 수직(vertical), 수평(horizontal)
+
+gravity : 정렬 방향 위아래왼쪽오른쪽 / 레이아웃 기준
+layout_gravity : 부모 기준
+
+padding : 여백
+layout_weight : 비율
+baselineAligned : 위젯들 보기좋게 정렬
+
+레이아웃 종류
+LinearLayout : orientation,gravity로 위치 정하기
+
+RelativeLayout : 요소마다 기준으로 자리 정하기 가능
+
+테이블 : 표 같이 생긴거
+span = 2 (크기2만큼) , column = 1 (1번 자리에 배치)
+
+Grid : 표 같이 생긴거
+fill_horizontal : 셀의 너비만큼 뷰의 너비 채움
+fill_vertical : 셀의 높이만큼 높이 채움
+fill : 셀의 크기만큼 뷰의 크기 채움
+rowSpan="2" (아래로 크기2만큼)
+
+***4.이미지를 교차해서 나타내기
+FrameLayout : 위젯들은 왼쪽 상단부터 겹쳐서 출력함
+visible , invisible
+
+
+***3.xml없이 화면 만들기
+
+public void onCreate()
+	super.onCreate()
+	
+	LinearLayout.layoutParams params = new LinearLayout.LayoutParams()
+		LL.LP.MATCH_PARENT
+	
+	LinearLayout baseLayout = new LinearLayout(this);
+	baseLayout.setOrientation(LinearLayout.VERTICAL);
+	
+	EditText et = new EditText(this);
+	baseLayout.addView(et);
+
+	Button btn = new Button(this);
+	btn.setText("버튼입니다");
+	baseLayout.addView(btn);
+	btn.setOnClickListener(new View.OnClickListener(){
+		public void onClick(View arg0){
+			Toast.makeText(getApplicationContext(), "코드로 생성한 버튼			입니다", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+
+액티비티와 인텐트
+Application > Activity > Window > Surface > ViewGroup > Views
+
+안드로이드 4대 컴포넌트(CASB)
+1.Activity : (화면)을 구성
+2.Service : (백그라운드)에서 동작하는 컴포넌트
+3.Broadcast Receiver : 배터리 방전등 (알림)을 보냄
+4.Content Provider : 응용프로그램 사이에 데이터를 (상호 공유)
+
+화면 만들기 > 기능 구현 > 매니패스트 등록
+
+**명시적 인텐트 : 확실한 받는자 설정해줌
+전달 : Intent intent = new intent(getApplicationContext(), SecondActivity.class);
+
+인텐트 : 안드로이드 4대 컴포넌트 상호 간에 데이터를 주고 받기 위한 (메세지 객체)
+
+**암시적 인텐트
+(약속된 액션)을 지정하여 기존 응용 프로그램 실행
+putExtra() : 데이터 설정
+startActivity()
+
+Intent intent = new intent(getApplicationContext(), ResultActivity.class);
+intent.putExtra("Num1",값)
+startActivityForResult(intent,0); // 넘기고
+
+Intent Inintent = getIntent(); //받기
+final int hapValue = inIntent.getExtra("Num1",0) //받기 
+Intent outIntent = new Intent(getApplicationCotext(),MainActivity.class) // 다시 줄거 정하고
+outIntent.putExtra("Hap", hapValue); // 값 넣고
+setResult(RESULT_OK, otIntent); // startActivity 말고 얘 호출
+finish(); // 종료 
+
+***5. 양방향 액티비티 예제(registerForActivityResult 방법을 적용한 예제)
+resultLauncher 객체 선언하고,
+startActivityForResult() 대신에 resultLauncher.launch(intent); 추가
+
+***6. 액티비티 생명주기
+onCreate() : 생성시 호출
+onStart() : 보여질 준비
+onResume() : 사용자에게 보여지기 직전
+onPause() : 화면이 부분적으로 보임,(데이터 저장 시점)
+onStop() : 화면이 가려져서 안보임
+onRestart() : onStop()에서 다시 시작하기 전 호출
+onDestroy() : finish() 함수 호출로 강제 종료시 액티비티 소멸
+
+Task and Back Stack
+Task = 상호작용하는 액티비티들의 모음
+새로운 액티비티를 실행하면 열린 순서대로 스택에 들어감
+
+Logcat - 오류 발생 시 원인 파악을 위해 로그 생성
+v,d,i,w,e
+
+Chronometer : 시간 측정 , 스톱워치
+TimePicker : 시간 표시
+이전 모양 spinmer
+
+AutoCompleteTextView : 자동완성
+
+DatePicker,CalendarView : 날짜 표시 및 조절
+
+뷰 컨테이너
+스크롤 뷰 : 스크롤 (하나만 넣을 수 있음) / 수직
+horizontal / 수평
+
+슬라이딩드로어 : handle / 속성들 이름이 같아야함
+
+뷰플리퍼 : 이전화면 , 다음화면
+
+**탭호스트 : 여러 탭을 두고 탭을 클릭할 때 해당 화면이 나오도록 설정하는 뷰 컨테이너
+
+액션바 : 여러 화면을 사용하기 위해서 고안 됨
+
+프래그먼트 : 액티비티 화면을 분할해서 표현 가능
+
+onCreat() : Fragment 생성 시 호출
+onCreateView() : 리턴하여 화면에 표시
+onPause() : Fragment를 떠날 때 호출, 필요 시 데이터 저장 
+
+웹뷰 : 웹브라우저 기능을 앱 안에 포함시킬 수 있는 위젯
+manifest에 permission 설정 해야함
+
+7. 탭호스트 예제
+TabSpec : 탭을 구성하는 요소들의 집합
+-setContent() : 탭에 보일 컨텐츠 id 설정
+-setIndicator() : 탭 버튼의 제목 설정
+-addtap() : 탭 추가
+
+8. 액션바와 프래그먼트 예제
+Bundle : Key와 Value로 데이터를 묶어 저장
+setArguments() : Fragment의 bundle을 저장
+getArguments() : 저장한 bundle을 꺼냄
+
+9. 웹뷰 예제
+manifest에
+<uses-permission android:name="android.permission.INTERNET" />
+android:usesCleartextTraffic="true"   // 설정해야함
+web.getSettings().setJavaScriptEnabled(true); 해야 빨라짐
